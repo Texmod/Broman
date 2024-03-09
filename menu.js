@@ -1,6 +1,6 @@
-var states = ["menu", "action"];
+var states = ["menu", "action"]
 var state = 0;
-var current_state = states[state];
+var current_state = states[state]
 
 function menu_controls(event){
 	switch(event.keyCode){
@@ -12,7 +12,6 @@ function start(){
 	state = 1;
 	current_state = states[state];
 	music.play();
-	console.log("pressed");
 }
 
 function menu_draw(){
@@ -20,5 +19,5 @@ function menu_draw(){
 
 	ctx.fillStyle = "black";
 	ctx.font = "30px Arial";
-	ctx.fillText("Press Enter to start", (canvas.width - 250) / 2, (canvas.height - 20) / 2);
+	ctx.fillText("Press Enter to start or Tap screen", (canvas.width - 380) / 2, (canvas.height - 20) / 2);
 }

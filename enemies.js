@@ -121,7 +121,7 @@ function enemy_spawn(){
 		enemy_right.width = 96;
 		enemy_right.height = 96;
 		enemy_right.x = canvas.width;
-		enemy_right.y = (canvas.height - enemy_right.height) / 2; 
+		enemy_right.y = (canvas.height - enemy_right.height) / 2;
 		enemy_right.direction = "right";
 		enemy_right.img = enemy_img_right;
 

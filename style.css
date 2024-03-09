@@ -13,3 +13,11 @@ body{
 	width: 800px;
 	height: 600px;
 }
+
+#images {
+	display: none;
+}
+
+#audio {
+	display: none;
+}

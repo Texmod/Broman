@@ -51,9 +51,15 @@ var music = new Audio('assets/sounds and others/music.wav');
 music.loop = true;
 
 window.onload = function(){
+
 	var fps = 60;
 	document.addEventListener("keydown", keydown);
 	document.addEventListener("keydown", menu_controls);
+
+	canvas.addEventListener("touchstart", touchstart);
+	canvas.addEventListener("touchmove", touchmove);
+	canvas.addEventListener("touchend", touchend);
+
 	setInterval(gameloop, 1000 / fps);
 }
 
@@ -76,6 +82,8 @@ var background_no = 0;
 var backgrounds = [grass, cobble, mud, sand];
 var current_background = backgrounds[background_no];
 
+var touchThreshold = 30;
+
 function gameloop(){
 	if (current_state == "menu"){
 		menu_draw();	
@@ -83,6 +91,7 @@ function gameloop(){
 
 	if (current_state == "action"){
 		enemy_update();
+		touch_update();
 		update();
 		draw();	
 	}
@@ -143,28 +152,33 @@ function draw(){
 
 	ctx.fillStyle = "black";
 	ctx.font = "30px Arial";
-	ctx.fillText("Score: " + score, 10, 50);
+	ctx.fillText("Score: " + score, canvas.width - 400, 50);
 
-	ctx.fillText("Health: " + Math.floor(health), 640, 50);
+	ctx.fillText("Health: " + Math.floor(health), canvas.width - 200, 50);
 
 	// ctx.fillText("speed: " + enemy_speed, 600, 100);
 
-	ctx.fillText("15/" + bullets_left, 640, 100);	
+	ctx.fillText("15/" + bullets_left, canvas.width - 200, 100);	
 
-	if (bullets_left <= 0){
+	if (bullets_left <= 0 && game_over == false){
 		ctx.fillText("R to reload", (canvas.width - 170) / 2, ((canvas.height - 20) / 2) + 50);		
 	}
 
 	if (game_over){
-		ctx.fillText("GAME OVER", (canvas.width - 170) / 2, (canvas.height - 20) / 2);
+		ctx.fillText("GAME OVER :)", (canvas.width - 170) / 2, (canvas.height - 20) / 2);
 
-		ctx.fillText("R to restart", (canvas.width - 170) / 2, ((canvas.height - 20) / 2) + 50);		
+		ctx.fillText("R to restart", (canvas.width - 170) / 2, ((canvas.height - 20) / 2) + 50);	
+		ctx.fillText("Reload to restart", (canvas.width - 170) / 2, ((canvas.height - 20) / 2) + 150);	
 	}
+
+	touch_draw();
 
 	hurt();
 }
 
 function add_bullet(){
+	mousebox_reset()
+	
 	if (bullet_timer <= 0 && bullets_left > 0){
 		bullet_timer = 1000;
 		bullets_left = bullets_left - 1;
@@ -267,7 +281,7 @@ function collision_check(){
 function keydown(event){
 	if (game_over == false){
 		switch(event.keyCode){
-			case 37:current_img = img_left;break;
+			case 37:current_img = img_left; break;
 			case 38:current_img = img_up;break;
 			case 39:current_img = img_right;break;
 			case 40:current_img = img_down;break;
@@ -291,6 +305,8 @@ function CheckCollision(a, b){
 }
 
 function reset(){
+	mousebox_reset()
+
 	if (bullets_left < 15){
 		reload.play();
 		bullets_left = 15;

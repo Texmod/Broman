@@ -2,12 +2,42 @@
 <html>
 <head>
 	<title>Broman</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Personal Website">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="author" content="Swachha Raj Baidya">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<img src = "assets/player/up.png" id = "images">
+	<img src = "assets/player/down.png" id = "images">
+	<img src = "assets/player/left.png" id = "images">
+	<img src = "assets/player/right.png" id = "images">
+
+	<img src = "assets/player/bullet_up.png" id = "images">
+	<img src = "assets/player/bullet_down.png" id = "images">
+	<img src = "assets/player/bullet_left.png" id = "images">
+	<img src = "assets/player/bullet_right.png" id = "images">
+
+	<img src = "assets/enemy/up.png" id = "images">
+	<img src = "assets/enemy/down.png" id = "images">
+	<img src = "assets/enemy/left.png" id = "images">
+	<img src = "assets/enemy/right.png" id = "images">
+
+	<audio>
+		<source src = "assets/sounds and others/gunsound.wav" id = "audio">
+  		<source src = "assets/sounds and others/zombiedeathnew.wav" id = "audio">
+		<source src = "assets/sounds and others/zombiespawn.wav" id = "audio">	
+		<source src = "assets/sounds and others/blank.wav" id = "audio">
+		<source src = "assets/sounds and others/reload.wav" id = "audio">
+		<source src = "assets/sounds and others/music.wav" id = "audio">
+	</audio>
+
 	<canvas id = "canvas" width = "800" height = "600"></canvas>
 	<script src = "enemies.js"></script>
 	<script src = "script.js"></script>
 	<script src = "menu.js"></script>
+	<script src = "touch.js"></script>
 </body>
 </html>
