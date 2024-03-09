@@ -268,8 +268,8 @@ function collision_check(){
 		enemy_speed = enemy_speed + 0.5;
 	}
 
-	if (enemy_speed >= 10){
-		enemy_speed = 10;
+	if (enemy_speed >= 8){
+		enemy_speed = 8;
 	}
 
 	if (background_no >= 4){
